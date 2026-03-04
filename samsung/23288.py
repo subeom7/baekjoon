@@ -87,7 +87,6 @@ def rotate(direction):
 
 def bfs(r, c):
     q = deque()
-    matrix_copy = [matrix[i][:] for i in range(N)]
     visited = [[False] * M for _ in range(N)]
 
     count = 1
@@ -98,11 +97,11 @@ def bfs(r, c):
         i, j = q.popleft()
 
         for nr, nc in directions:
-            if 0 <= i + nr < N and 0 <= j + nc < M and not visited[i + nr][j + nc] and matrix_copy[i + nr][j + nc] == matrix_copy[r][c]:
+            if 0 <= i + nr < N and 0 <= j + nc < M and not visited[i + nr][j + nc] and matrix[i + nr][j + nc] == matrix[r][c]:
                 count += 1
                 visited[i + nr][j + nc] = True
                 q.append((i + nr, j + nc))
     
-    return count * matrix_copy[r][c]
+    return count * matrix[r][c]
 
 print(solve())
